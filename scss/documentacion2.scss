@@ -80,6 +80,9 @@ header {
         margin-bottom: 30px;
         margin: 20px;
 
+        p {
+            text-align: center;
+        }
 
         article {
             flex: 1 1 calc(50% - 20px); // Ajusta el ancho para dos columnas con espacio
