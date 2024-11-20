@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/articulos2.css">
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <script src="../js/menuMobile.js" defer></script>
+    <script src="../js/menuHorizontalFijoHeader.js" defer></script>
+    <script src="../js/suscripcion.js" defer></script>
+    <title>Artículos</title>
+</head>
+
+<body>
+    <!-- Botón de menú (icono) -->
+    <div class="menu-toggle" id="menuToggle">
+        <img src="../img/iconoMenu.png" alt="Abrir menú" id="menuIcon">
+    </div>
+
+    <!-- Menú de navegación vertical-->
+    <nav class="nav" id="navMenu">
+        <ul class="navLista">
+            <li class="navItem">
+                <img src="../img/iconoCasa.png" alt="Inicio">
+                <a href="../index.html">Principal</a>
+            </li>
+            <li class="navItem">
+                <img src="../img/iconoArticulos.png" alt="Artículos">
+                <a href="articulos.html">Artículos</a>
+            </li>
+            <li class="navItem">
+                <img src="../img/iconoContacto.png" alt="Contacto">
+                <a href="contacto.html">Contacto</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Menú de navegación hirizontal-->
+    <nav id="navMenuHorizontal">
+        <a href="../index.html">Principal</a>
+        <a href="articulos.html">Artículos</a>
+        <a href="contacto.html">Contacto</a>
+        <!-- start-articulos : indica donde tiene que empezar el hover -->
+        <div class="animation start-articulos"></div>
+    </nav>
+    
+    <!-- Encabezado -->
+    <header>
+        <div class="divHeader">
+            <img src="../img/imgHeader.jpg" alt="Ondas cuánticas" class="header-img">
+            <div class="divHeaderTitulo">
+                <h1>Computación Cuántica<br>
+                    <hr><span>Artículos</span>
+                </h1>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido -->
+    <main class="divMain">
+
+        <section class="seccionArticulo1">
+            <div class="articulo1Vid">
+                <video autoplay muted loop class="videoArticulo1Serio">
+                    <source src="../mp4/articulo1.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+                <video autoplay muted loop class="videoArticulo1Funny">
+                    <source src="../mp4/funnyArticulo1.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="articulo1Titulo">
+                <a href="individualArticulo1.html">
+                    <h2>"¿Qué es el Algoritmo de Shor y Cómo Amenaza la Seguridad Digital?"</h2>
+                </a>
+            </div>
+        </section>
+
+        <section class="seccionArticulo2">
+            <div class="articulo2Vid">
+                <video autoplay muted loop class="videoArticulo2">
+                    <source src="../mp4/articulo2.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="articulo2Titulo">
+                <a href="individualArticulo2.html">
+                    <h2>"El Rol de la Computación Cuántica en la Inteligencia Artificial: ¿Revolución o Complemento?"
+                    </h2>
+                </a>
+            </div>
+        </section>
+
+        <section class="seccionArticulo3">
+            <div class="articulo3Vid">
+                <video autoplay muted loop class="videoArticulo3">
+                    <source src="../mp4/articulo3.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+            <div class="articulo3Titulo">
+                <a href="individualArticulo3.html">
+                    <h2>"Computación Cuántica en la Nube: Acceso a la Tecnología del Futuro desde Cualquier Lugar"</h2>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <div class="paginacion">
+        <a href="#" class="paginacionItem1">&laquo;</a>
+        <!-- ponemos active para poder tratar el item como actual -->
+        <a href="#" class="paginacionItem2 active">1</a>
+        <a href="#" class="paginacionItem3">Continuará...</a>
+        <a href="#" class="paginacionItem4">&raquo;</a>
+    </div>
+
+    <footer>
+        <div class="footerSobreMi">
+            <div class="miFoto">
+                <img src="../img/geanina.png" alt="Mi foto" class="fotoPerfil">
+            </div>
+            <div class="footerInfoSobreMi">
+                <h3>Sobre mí</h3>
+                <p>
+                    Soy Geanina Foanta, apasionada por la tecnología, el diseño web y la programación. Mi objetivo es crear soluciones
+                    eficientes y funcionales
+                    para los desafíos del mundo digital.
+                </p>
+            </div>
+            <div class="footerRedesSociales">
+                <a href="https://www.linkedin.com/in/geanina-evelina-foanta-9796762bb/" target="_blank">
+                    <img src="../img/linkedin.png" alt="Linkedin">
+                </a>
+                <a href="https://www.instagram.com/yeany_1829/" target="_blank">
+                    <img src="../img/instagram.png" alt="Instagram">
+                </a>
+                <a href="https://github.com/geanina19" target="_blank">
+                    <img src="../img/github.png" alt="Github">
+                </a>
+            </div>
+        </div>
+        <div class="footerSuscripcion">
+            <h2>¡ Suscríbete !</h2>
+            <form id="formSuscripcion">
+                <input type="text" name="Nombre" id="nombre" placeholder="Nombre usuario">
+                <input type="email" id="emailSuscripcion" placeholder="Introduce tu correo" required>
+                <button type="button" onclick="manejarSuscripcion()">Suscribirse</button>
+            </form>
+        </div>
+    </footer>
+
+    <!-- Licencia -->
+    <div class="creativeCommons">
+        <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span
+                property="dct:title">Computación cuántica</span> by <span property="cc:attributionName">Geanina
+                Foanta</span> is licensed under <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank"
+                rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
+    </div>
+</body>
+
+</html>

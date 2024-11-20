@@ -1,0 +1,745 @@
+// Variables de color y estilo
+$background-color: #D9D9D9; // Color de fondo para el contenedor de menú
+$text-color: #333; // Color de texto en contraste
+$highlight-color: #a200ff;
+// $neon-verdeOscuro: #00796b;
+// $neon-verdeClaro: #1abc9c;
+$hover-blue: #0056b3;
+$neon-azulOscuro: #008fb3;
+// $neon-azulClaro: #00ccff;
+
+$nav-bg-color: #243241;
+$nav-border-radius: 8px;
+$link-font-size: 15px;
+$animation-duration: 0.5s;
+$animation-easing: ease;
+
+$color-principal: #ff9900;
+$color-articulos: #1abc9c;
+$color-contacto: #9b59b6;
+
+$texto-blanco: #FFFFFF;
+$font-tiulos: myFirstFont;
+
+//-------------------------------------------
+$primary-color: #1abc9c;
+$secondary-color: #f4f4f4;
+$text-color: #333;
+$accent-color: #9b59b6;
+$transition-time: 0.3s;
+//-------------------------------------------
+
+
+@font-face {
+    font-family: myFirstFont;
+    src: url('../fonts/Orbitron-VariableFont_wght.ttf');
+}
+
+
+//------------
+// Mixins
+@mixin transition($property) {
+    transition: $property $transition-time ease-in-out;
+}
+
+@mixin flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+// General Styles
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    background-color: #202d3a;
+    margin: 0;
+    padding: 0;
+    color: $text-color;
+}
+
+//------------
+
+// Mixin para el estilo de hover de los ítems del menú
+@mixin hover-item($bg-color, $text-color, $box-shadow-color) {
+    background-color: lighten($bg-color, 10%);
+    box-shadow: 0px 4px 12px rgba($box-shadow-color, 0.3);
+    transform: scale(1.05); // Aumento de tamaño en hover
+    transition: all 0.3s ease;
+
+    a {
+        color: $text-color;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: $font-tiulos;
+        text-transform: uppercase;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+
+        &:hover {
+            color: $highlight-color;
+            text-shadow: 0px 0px 6px $highlight-color; // Efecto neón en hover
+        }
+    }
+}
+
+// Contenedor del menú (barra lateral)
+.menu-toggle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 50px; // Ancho del ícono de menú
+    height: 100vh; // Altura completa del navegador
+    background-color: $background-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+
+    img {
+        width: 80%; // Ajusta el tamaño del ícono dentro del contenedor
+        height: auto;
+    }
+}
+
+// Menú vertical para pantallas pequeñas
+#navMenu {
+    position: fixed;
+    top: 0;
+    left: 30px;
+    width: 250px;
+    height: 100%;
+    padding-left: 25px;
+    background-color: rgba(217, 217, 217, 0.9);
+    color: $text-color;
+    transform: translateX(-100%); // Comienza oculto
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    &.open {
+        transform: translateX(0);
+        box-shadow: 4px 0px 20px rgba(0, 143, 179, 0.4); // Sombra al abrir el menú
+    }
+
+    .navLista {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+
+        .navItem {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 6px;
+
+            // Aplicamos el mixin para los efectos hover
+            @include hover-item($neon-azulOscuro, $texto-blanco, $neon-azulOscuro);
+
+            img {
+                margin-right: 10px;
+                width: 35px;
+                height: 35px;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: rotate(15deg); // Rotación ligera de ícono en hover
+                }
+            }
+        }
+    }
+}
+
+#navMenuHorizontal {
+    display: none;
+}
+
+header {
+    .divHeader {
+        display: flex; // Pone los hijos en línea
+        align-items: center; // Alinea verticalmente el título y el video
+        justify-content: space-between; // Deja espacio entre el título y el video
+        margin-left: 70px;
+        margin-right: 10px;
+        margin-top: 20px;
+        padding-top: 40px;
+        padding-bottom: 40px;
+        padding-right: 10px;
+        background-color: #d0b7ff; // Fondo del encabezado
+        border: 2px solid #000000;
+        border-radius: 10px;
+
+        .divHeaderTitulo {
+            //flex: 1; // El título ocupa el espacio disponible
+            margin-right: 1rem;
+
+            h1 {
+                font-size: 20px; // Tamaño del título
+                color: #333;
+                font-family: $font-tiulos; // Aplica tu fuente personalizada si está configurada
+                text-align: center;
+            }
+
+            p {
+                text-align: center;
+                line-height: 1.6;
+                transition: all 0.3s ease; // Transición suave en todos los cambios
+
+                // Efecto de transformación
+                &:hover {
+                    color: #0056b3; // Cambia color al hacer hover
+                    transform: translateX(10px) scale(1.05); // Desplazamiento y aumento de tamaño
+                    cursor: pointer; // Cambiar el cursor a "puntero" al pasar sobre el párrafo
+                }
+            }
+        }
+
+        .divHeaderVid {
+            max-width: 300px;
+
+            .videoArticulo1Serio {
+                width: 100%;
+                height: auto;
+                border-radius: 8px; // Esquinas redondeadas
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); // Sombra para el video
+            }
+        }
+    }
+}
+
+
+//-------------------------------------
+
+.divMainImg {
+    display: flex;
+    flex-direction: column; // En pantallas pequeñas, se organiza en columna
+    align-items: center;
+
+    .divMain {
+        margin-left: 73px;
+        margin-right: 10px;
+        margin-top: 20px;
+    
+        //margin: 2rem auto;
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+    
+        @include transition(all);
+    
+        &:hover {
+            transform: scale(1.005);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+    
+        // Section
+        section {
+            margin-bottom: 2rem;
+            padding: 1rem;
+            animation: fadeInUp 0.5s ease-in-out;
+    
+            h2 {
+                color: $primary-color;
+                position: relative;
+                font-size: 1.8rem;
+                margin-bottom: 1rem;
+    
+                &::after {
+                    content: '';
+                    display: block;
+                    width: 50px;
+                    height: 3px;
+                    background: $accent-color;
+                    margin-top: 0.5rem;
+                }
+            }
+    
+            ul {
+                list-style: none;
+                padding: 0;
+    
+                display: grid; // Utilizamos CSS Grid para organizar los elementos
+                gap: 1rem;
+                grid-template-columns: 1fr;
+    
+                li {
+                    margin: 0.5rem 0;
+                    padding-left: 1.5rem;
+                    position: relative;
+    
+                    &::before {
+                        content: '\2022'; // Bullet
+                        position: absolute;
+                        left: 0;
+                        color: $primary-color;
+                        font-size: 1.5rem;
+                        line-height: 0.5;
+                    }
+    
+                    &:hover {
+                        color: $accent-color;
+                        font-weight: bold;
+                    }
+                }
+            }
+    
+            p {
+                margin-bottom: 1rem;
+                font-size: 1rem;
+                line-height: 1.8;
+    
+                @include transition(color);
+    
+                &:hover {
+                    color: $primary-color;
+                }
+            }
+    
+            &:nth-child(even) {
+                background: $secondary-color;
+                border-left: 5px solid $primary-color;
+            }
+    
+            &:hover h2 {
+                color: $accent-color;
+            }
+    
+            // Article
+            article {
+                margin: 1.5rem 0;
+                padding: 1rem;
+                background: #ffffff;
+                border-radius: 8px;
+                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+                animation: fadeInUp 0.7s ease-in-out;
+    
+                h3 {
+                    font-size: 1.5rem;
+                    color: $accent-color;
+                    margin-bottom: 0.5rem;
+                }
+    
+                ul {
+                    list-style: none;
+                    padding: 0;
+    
+                    display: grid; // Utilizamos CSS Grid para organizar los elementos
+                    gap: 1rem;
+                    grid-template-columns: 1fr;
+    
+                    li {
+                        margin: 0.5rem 0;
+                        padding-left: 1.5rem;
+                        position: relative;
+    
+                        &::before {
+                            content: '\2022'; // Bullet
+                            position: absolute;
+                            left: 0;
+                            color: $primary-color;
+                            font-size: 1.5rem;
+                            line-height: 0.5;
+                        }
+    
+                        &:hover {
+                            color: $accent-color;
+                            font-weight: bold;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .divContenidoImg {
+        width: 400px; // Aseguramos que la imagen ocupe el 100% de la fila
+        margin-top: 30px;
+
+        img {
+            margin-left: 33px;
+            margin-right: 5px;
+            width: 100%;
+            height: auto; // Mantener la relación de aspecto original de la imagen
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+    }
+}
+
+// Animations
+@keyframes fadeInUp {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+//--------------------------
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: hsl(0, 0%, 85%, 0.5);
+    color: #fff;
+    gap: 20px;
+
+    .footerSobreMi,
+    .footerSuscripcion {
+        flex: 1;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    .footerSobreMi {
+        margin-left: 50px;
+        margin-right: -15px;
+        text-align: center;
+        background-color: #035569;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .miFoto {
+            img {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 15px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        .footerInfoSobreMi {
+            h3 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: #fff;
+            }
+
+            p {
+                font-size: 16px;
+                color: #ccc;
+            }
+        }
+
+        .footerRedesSociales {
+            margin-top: 20px;
+
+            a {
+                margin-right: 10px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
+
+    .footerSuscripcion {
+        background: linear-gradient(135deg, $neon-azulOscuro, #333);
+        background-size: 300% 300%;
+        animation: gradientAnimation 6s ease infinite;
+        text-align: center;
+        color: white;
+        margin-left: 70px;
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            input[type="text"],
+            input[type="email"] {
+                padding: 10px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+                &:focus {
+                    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+                }
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                background-color: #f16767;
+                color: white;
+                cursor: pointer;
+                //transition: background-color 0.3s ease, transform 0.2s ease;
+                transition: all 0.3s ease;
+                box-shadow: 4px 6px 2px rgb(33, 33, 33);
+
+                &:hover {
+                    background-color: #f16767;
+                    //box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+                }
+
+                /* Efecto al pulsar el botón */
+                &:active {
+                    //transform: scale(0.95);
+                    transform: translateY(3px);
+                    box-shadow: 0 2px 4px rgb(86, 85, 85);
+                }
+            }
+        }
+    }
+}
+
+/* Keyframe Animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.creativeCommons {
+    text-align: center;
+    padding: 20px;
+    padding-left: 60px;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: hsl(0, 0%, 85%, 0.5);
+    position: relative;
+    margin-left: 0;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+
+    /* Añadir espacio entre elementos y borde superior */
+    p {
+        padding-top: 5px;
+        font-size: 14px;
+        color: rgb(0, 0, 0);
+    }
+}
+
+@media all and (min-width: 768px) {
+
+    .divMainImg {
+        display: flex;
+        flex-direction: row; // Cambia a una fila (row) cuando la pantalla sea más ancha
+        justify-content: flex-start; // Alinea los elementos al principio, sin espacio extra entre ellos
+
+        .divMain {
+            width: 40%; // El divMain ocupará el 50% del ancho disponible
+            margin-left: 70px; // Agrega margen a la izquierda para que el contenido no quede tapado
+            margin-right: 0; // Elimina el margen derecho, no es necesario para controlar el espacio
+        }
+
+        .divContenidoImg {
+            width: 35%; // La imagen ocupará el 35% del ancho disponible
+            margin-right: 0; // Elimina el margen derecho, ya que 'gap' maneja el espacio entre los elementos
+            align-self: flex-start;
+        }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; // Esto asegura que los elementos dentro del footer estén centrados verticalmente.
+
+        .footerSobreMi,
+        .footerSuscripcion {
+            display: flex;
+            flex-direction: column; // Asegura que los elementos dentro de cada sección estén apilados verticalmente.
+            align-items: center; // Centra los elementos horizontalmente dentro de cada sección.
+        }
+
+        .footerSobreMi {
+            text-align: center; // Centra el texto en la sección "Sobre mí"
+        }
+
+        .footerRedesSociales {
+            display: flex;
+            justify-content: center; // Centra los iconos de redes sociales.
+            gap: 10px; // Espacio entre los iconos de redes sociales.
+        }
+
+        .footerSuscripcion {
+            align-self: center; // Centra verticalmente la sección de suscripción
+        }
+    }
+
+    .creativeCommons {
+        p {
+            font-size: 17px;
+        }
+    }
+}
+
+@media all and (min-width: 1200px) {
+
+    .divMainImg {
+        display: flex;
+        flex-direction: row; // Cambia a una fila (row) cuando la pantalla sea más ancha
+        justify-content: center; // Alinea los elementos al principio, sin espacio extra entre ellos
+        padding-right: 70px;
+
+        .divContenidoImg {
+            .img1 {
+                margin-top: 50px;
+            }
+        }
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    #navMenu {
+        display: none;
+    }
+
+    #navMenuHorizontal {
+        //en mobile está oculto y ahora lo muetro
+        display: block;
+
+        position: fixed; // Fijo en la parte superior
+        top: 0; // Posición en la parte superior
+        left: 40%; // Opcional: para que quede alineado a la izquierda de la pantalla
+        width: 100%; // Ancho completo para que abarque toda la parte superior
+        max-width: 310px; // Limita el ancho máximo del menú
+        margin: 0 auto; // Centra el menú
+        height: 50px;
+        background-color: $nav-bg-color;
+        border-radius: $nav-border-radius;
+        font-size: 0;
+        z-index: 1000;
+
+        a {
+            line-height: 50px;
+            height: 100%;
+            font-size: $link-font-size;
+            display: inline-block;
+            width: 100px;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            color: $texto-blanco;
+            cursor: pointer;
+
+            &:nth-child(2) {
+                width: 110px;
+            }
+        }
+
+        .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all $animation-duration $animation-easing;
+            border-radius: $nav-border-radius;
+        }
+
+        // Mixin para crear animaciones específicas
+        @mixin link-animation($width, $left, $color) {
+            width: $width;
+            left: $left;
+            background-color: $color;
+        }
+
+        // Aplicar animación en cada enlace
+        .start-principal,
+        a:nth-child(1):hover~.animation {
+            @include link-animation(100px, 0, $color-principal);
+        }
+
+        .start-articulos,
+        a:nth-child(2):hover~.animation {
+            @include link-animation(110px, 100px, $color-articulos);
+        }
+
+        .start-contacto,
+        a:nth-child(3):hover~.animation {
+            @include link-animation(100px, 210px, $color-contacto);
+        }
+    }
+
+    header {
+        .divHeader {
+            display: flex; // Pone los hijos en línea
+            align-items: center; // Alinea verticalmente el título y el video
+            justify-content: space-between; // Deja espacio entre el título y el video
+            margin-left: 20px;
+            margin-right: 20px;
+            height: 200px;
+            padding: 50px;
+
+            .divHeaderTitulo {
+                h1 {
+                    font-size: 30px;
+                }
+            }
+        }
+    }
+
+    .divMain {
+        margin-left: 20px;
+        margin-right: 20px;
+    }
+
+    .creativeCommons {
+        p {
+            font-size: 20px;
+        }
+    }
+}

@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../css/individualArticulo1.css">
+    <link rel="icon" href="../img/logo.ico" type="image/x-icon">
+    <script src="../js/menuMobile.js" defer></script>
+    <script src="../js/suscripcion.js" defer></script>
+    <title>Artículo 1</title>
+</head>
+
+<body>
+    <!-- Botón de menú (icono) -->
+    <div class="menu-toggle" id="menuToggle">
+        <img src="../img/iconoMenu.png" alt="Abrir menú" id="menuIcon">
+    </div>
+
+    <!-- Menú de navegación vertical-->
+    <nav id="navMenu">
+        <ul class="navLista">
+            <li class="navItem">
+                <img src="../img/iconoCasa.png" alt="Inicio">
+                <a href="../index.html">Principal</a>
+            </li>
+            <li class="navItem">
+                <img src="../img/iconoArticulos.png" alt="Artículos">
+                <a href="articulos.html">Artículos</a>
+            </li>
+            <li class="navItem">
+                <img src="../img/iconoContacto.png" alt="Contacto">
+                <a href="contacto.html">Contacto</a>
+            </li>
+        </ul>
+    </nav>
+
+    <!-- Menú de navegación hirizontal-->
+    <nav id="navMenuHorizontal">
+        <a href="../index.html">Principal</a>
+        <a href="articulos.html">Artículos</a>
+        <a href="contacto.html">Contacto</a>
+        <div class="animation start-articulos"></div>
+    </nav>
+
+    <!-- Encabezado -->
+    <header>
+        <div class="divHeader">
+            <div class="divHeaderTitulo">
+                <h1>"¿Qué es el Algoritmo de Shor y Cómo Amenaza la Seguridad Digital?"</h1>
+                <p>Geanina Foanta <br> 19/11/2024</p>
+            </div>
+            <div class="divHeaderVid">
+                <video autoplay muted loop class="videoArticulo1Serio">
+                    <source src="../mp4/articulo1.mp4" type="video/mp4">
+                    Tu navegador no soporta la etiqueta de video.
+                </video>
+            </div>
+        </div>
+    </header>
+
+    <!-- Contenido -->
+    <div class="divMainImg">
+        <!-- Informacion -->
+        <main class="divMain">
+            <!-- Introducción -->
+            <section>
+                <h2>¿Qué es el Algoritmo de Shor?</h2>
+                <p>
+                    El <strong>Algoritmo de Shor</strong>, desarrollado por el matemático Peter Shor en 1994, es uno de
+                    los
+                    avances más destacados de la computación cuántica.
+                    Este algoritmo aprovecha las capacidades únicas de las computadoras cuánticas para realizar cálculos
+                    que
+                    serían prácticamente imposibles para los ordenadores clásicos.
+                    Uno de los problemas más conocidos que aborda es la <strong>factorización de números enteros
+                        grandes</strong>, una tarea que forma la base de muchos sistemas de cifrado modernos, como RSA.
+                </p>
+                <p>
+                    Este artículo explora cómo funciona este algoritmo, su impacto en la seguridad digital y las
+                    soluciones
+                    emergentes para mitigar su amenaza.
+                </p>
+            </section>
+
+            <!-- Fundamentos del Algoritmo de Shor -->
+            <section>
+                <h2>Fundamentos del Algoritmo de Shor</h2>
+                <p>
+                    El Algoritmo de Shor está diseñado para ejecutarse en una <strong>computadora cuántica</strong>,
+                    utilizando propiedades como la
+                    <em>superposición</em> y el <em>entrelazamiento cuántico</em> para resolver problemas matemáticos de
+                    manera más eficiente que los algoritmos clásicos.
+                    El enfoque principal del algoritmo es factorizar un número <code>N</code> grande en sus factores
+                    primos,
+                    lo cual es esencial para romper el cifrado RSA.
+                </p>
+
+                <!-- Cómo funciona -->
+                <article>
+                    <h3>Cómo funciona:</h3>
+                    <ul>
+                        <li>
+                            <strong>Reducción a un problema de periodicidad:</strong> Shor transforma la factorización
+                            en un
+                            problema de encontrar el período de una función matemática específica.
+                        </li>
+                        <li>
+                            <strong>Aplicación de la Transformada de Fourier Cuántica:</strong> Utiliza esta herramienta
+                            para identificar patrones periódicos en los datos cuánticos con gran rapidez.
+                        </li>
+                        <li>
+                            <strong>Obtención de los factores primos:</strong> Una vez que se encuentra el período, el
+                            algoritmo utiliza propiedades matemáticas para derivar los factores primos de
+                            <code>N</code>.
+                        </li>
+                    </ul>
+                    <p>
+                        En una computadora clásica, el tiempo necesario para factorizar un número crece exponencialmente
+                        con
+                        su tamaño.
+                        En contraste, el Algoritmo de Shor puede realizar esta tarea en <strong>tiempo
+                            polinómico</strong>,
+                        reduciendo drásticamente la dificultad computacional.
+                    </p>
+                </article>
+            </section>
+
+            <!-- Impacto en la Criptografía Actual -->
+            <section>
+                <h2>Impacto en la Criptografía Actual</h2>
+                <p>
+                    Muchos de los sistemas de cifrado más utilizados, como RSA, se basan en la dificultad de factorizar
+                    números grandes.
+                    Este principio ha sido históricamente confiable porque los algoritmos clásicos no pueden resolver
+                    este
+                    problema en un tiempo razonable.
+                    Sin embargo, el Algoritmo de Shor cambia completamente este panorama.
+                </p>
+
+                <!-- Amenazas -->
+                <article>
+                    <h3>Amenazas:</h3>
+                    <ul>
+                        <li>
+                            <strong>Cifrado RSA:</strong> Utilizado para proteger correos electrónicos, transacciones
+                            bancarias y certificados digitales, el RSA depende de la dificultad de la factorización.
+                            Una computadora cuántica capaz de ejecutar el Algoritmo de Shor podría romper este cifrado
+                            en
+                            cuestión de minutos.
+                        </li>
+                        <li>
+                            <strong>Intercambio de claves seguras:</strong> Protocolos como Diffie-Hellman también están
+                            en
+                            riesgo, ya que el Algoritmo de Shor puede resolver problemas matemáticos relacionados, como
+                            el
+                            logaritmo discreto.
+                        </li>
+                        <li>
+                            <strong>Datos históricos:</strong> Incluso si los datos actuales están protegidos, una
+                            futura
+                            computadora cuántica podría descifrar comunicaciones almacenadas, comprometiendo la
+                            privacidad a
+                            largo plazo.
+                        </li>
+                    </ul>
+                </article>
+                <p>
+                    En resumen, la computación cuántica no solo pone en riesgo la seguridad actual, sino que también
+                    podría
+                    exponer décadas de información previamente cifrada.
+                </p>
+            </section>
+
+            <!-- Soluciones Emergentes -->
+            <section>
+                <h2>Soluciones Emergentes: La Criptografía Post-Cuántica</h2>
+                <p>
+                    Ante la amenaza que representa el Algoritmo de Shor, los investigadores están desarrollando nuevas
+                    técnicas de cifrado que sean resistentes a ataques cuánticos.
+                    Este campo, conocido como <strong>criptografía post-cuántica</strong>, busca garantizar la seguridad
+                    de
+                    los datos en un futuro dominado por la computación cuántica.
+                </p>
+
+                <!-- Métodos principales -->
+                <article>
+                    <h3>Métodos principales:</h3>
+                    <ul>
+                        <li>
+                            <strong>Algoritmos basados en problemas matemáticos complejos:</strong>
+                            <ul>
+                                <li><strong>Lattice-based cryptography:</strong> Utiliza estructuras de rejilla que son
+                                    resistentes tanto a computadoras clásicas como cuánticas.</li>
+                                <li><strong>Code-based cryptography:</strong> Basada en problemas relacionados con la
+                                    teoría
+                                    de códigos de error.</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <strong>Criptografía multivariable:</strong> Depende de resolver sistemas de ecuaciones
+                            polinómicas multivariables, una tarea que permanece difícil incluso para computadoras
+                            cuánticas.
+                        </li>
+                        <li>
+                            <strong>Propuestas híbridas:</strong> Combinan algoritmos clásicos y post-cuánticos para
+                            asegurar la transición hacia un mundo cuántico.
+                        </li>
+                    </ul>
+                </article>
+
+                <!-- Estándares emergentes -->
+                <article>
+                    <h3>Estándares emergentes:</h3>
+                    <p>
+                        Instituciones como el <strong>Instituto Nacional de Estándares y Tecnología (NIST)</strong>
+                        están
+                        liderando la estandarización de algoritmos post-cuánticos,
+                        lo que permitirá una adopción más amplia de estas tecnologías en los próximos años.
+                    </p>
+                </article>
+            </section>
+        </main>
+
+        <div class="divContenidoImg">
+            <img src="../img/imgAlgoritmoShor.png" alt="Algoritmo de Shor" class="img1">
+            <br><br>
+            <img src="../img/imgCriptografia.jpeg" alt="Criptografía" class="img2">
+            <br><br>
+            <img src="../img/imgPostQuantum.jpeg" alt="Post Quantum">
+        </div>
+    </div>
+
+
+
+    <footer>
+        <div class="footerSobreMi">
+            <div class="miFoto">
+                <img src="../img/geanina.png" alt="Mi foto" class="fotoPerfil">
+            </div>
+            <div class="footerInfoSobreMi">
+                <h3>Sobre mí</h3>
+                <p>
+                    Soy Geanina Foanta, apasionada por la tecnología, el diseño web y la programación. Mi objetivo es
+                    crear soluciones
+                    eficientes y funcionales
+                    para los desafíos del mundo digital.
+                </p>
+            </div>
+            <div class="footerRedesSociales">
+                <a href="https://www.linkedin.com/in/geanina-evelina-foanta-9796762bb/" target="_blank">
+                    <img src="../img/linkedin.png" alt="Linkedin">
+                </a>
+                <a href="https://www.instagram.com/yeany_1829/" target="_blank">
+                    <img src="../img/instagram.png" alt="Instagram">
+                </a>
+                <a href="https://github.com/geanina19" target="_blank">
+                    <img src="../img/github.png" alt="Github">
+                </a>
+            </div>
+        </div>
+        <div class="footerSuscripcion">
+            <h2>¡ Suscríbete !</h2>
+            <form id="formSuscripcion">
+                <input type="text" name="Nombre" id="nombre" placeholder="Nombre usuario">
+                <input type="email" id="emailSuscripcion" placeholder="Introduce tu correo" required>
+                <button type="button" onclick="manejarSuscripcion()">Suscribirse</button>
+            </form>
+        </div>
+    </footer>
+
+    <!-- Licencia -->
+    <div class="creativeCommons">
+        <p xmlns:cc="http://creativecommons.org/ns#" xmlns:dct="http://purl.org/dc/terms/"><span
+                property="dct:title">Computación cuántica</span> by <span property="cc:attributionName">Geanina
+                Foanta</span> is licensed under <a
+                href="https://creativecommons.org/licenses/by-nc-nd/4.0/?ref=chooser-v1" target="_blank"
+                rel="license noopener noreferrer" style="display:inline-block;">CC BY-NC-ND 4.0<img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/nc.svg?ref=chooser-v1" alt=""><img
+                    style="height:22px!important;margin-left:3px;vertical-align:text-bottom;"
+                    src="https://mirrors.creativecommons.org/presskit/icons/nd.svg?ref=chooser-v1" alt=""></a></p>
+    </div>
+</body>
+
+</html>

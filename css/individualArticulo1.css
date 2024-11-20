@@ -1,0 +1,572 @@
+@charset "UTF-8";
+@font-face {
+  font-family: myFirstFont;
+  src: url("../fonts/Orbitron-VariableFont_wght.ttf");
+}
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  background-color: #202d3a;
+  margin: 0;
+  padding: 0;
+  color: #333;
+}
+
+.menu-toggle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 7px;
+  padding-right: 7px;
+  width: 50px;
+  height: 100vh;
+  background-color: #D9D9D9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+.menu-toggle img {
+  width: 80%;
+  height: auto;
+}
+
+#navMenu {
+  position: fixed;
+  top: 0;
+  left: 30px;
+  width: 250px;
+  height: 100%;
+  padding-left: 25px;
+  background-color: rgba(217, 217, 217, 0.9);
+  color: #333;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+#navMenu.open {
+  transform: translateX(0);
+  box-shadow: 4px 0px 20px rgba(0, 143, 179, 0.4);
+}
+#navMenu .navLista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+#navMenu .navLista .navItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: #00b8e6;
+  box-shadow: 0px 4px 12px rgba(0, 143, 179, 0.3);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+#navMenu .navLista .navItem a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: myFirstFont;
+  text-transform: uppercase;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+#navMenu .navLista .navItem a:hover {
+  color: #a200ff;
+  text-shadow: 0px 0px 6px #a200ff;
+}
+#navMenu .navLista .navItem img {
+  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  transition: transform 0.3s ease;
+}
+#navMenu .navLista .navItem img:hover {
+  transform: rotate(15deg);
+}
+
+#navMenuHorizontal {
+  display: none;
+}
+
+header .divHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-left: 70px;
+  margin-right: 10px;
+  margin-top: 20px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  padding-right: 10px;
+  background-color: #b7ebff;
+  border: 2px solid #000000;
+  border-radius: 10px;
+}
+header .divHeader .divHeaderTitulo {
+  margin-right: 1rem;
+}
+header .divHeader .divHeaderTitulo h1 {
+  font-size: 20px;
+  color: #333;
+  font-family: myFirstFont;
+  text-align: center;
+}
+header .divHeader .divHeaderTitulo p {
+  text-align: center;
+  line-height: 1.6;
+  transition: all 0.3s ease;
+}
+header .divHeader .divHeaderTitulo p:hover {
+  color: #0056b3;
+  transform: translateX(10px) scale(1.05);
+  cursor: pointer;
+}
+header .divHeader .divHeaderVid {
+  max-width: 300px;
+}
+header .divHeader .divHeaderVid .videoArticulo1Serio {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.divMainImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.divMainImg .divMain {
+  margin-left: 73px;
+  margin-right: 10px;
+  margin-top: 20px;
+  background: white;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition: all 0.3s ease-in-out;
+}
+.divMainImg .divMain:hover {
+  transform: scale(1.005);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+.divMainImg .divMain section {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  animation: fadeInUp 0.5s ease-in-out;
+}
+.divMainImg .divMain section h2 {
+  color: #1ab1bc;
+  position: relative;
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+}
+.divMainImg .divMain section h2::after {
+  content: "";
+  display: block;
+  width: 50px;
+  height: 3px;
+  background: #0e11f1;
+  margin-top: 0.5rem;
+}
+.divMainImg .divMain section ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+.divMainImg .divMain section ul li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+.divMainImg .divMain section ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #1ab1bc;
+  font-size: 1.5rem;
+  line-height: 0.5;
+}
+.divMainImg .divMain section ul li:hover {
+  color: #0e11f1;
+  font-weight: bold;
+}
+.divMainImg .divMain section p {
+  margin-bottom: 1rem;
+  font-size: 1rem;
+  line-height: 1.8;
+  transition: color 0.3s ease-in-out;
+}
+.divMainImg .divMain section p:hover {
+  color: #1ab1bc;
+}
+.divMainImg .divMain section:nth-child(even) {
+  background: #f4f4f4;
+  border-left: 5px solid #1ab1bc;
+}
+.divMainImg .divMain section:hover h2 {
+  color: #0e11f1;
+}
+.divMainImg .divMain section article {
+  margin: 1.5rem 0;
+  padding: 1rem;
+  background: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  animation: fadeInUp 0.7s ease-in-out;
+}
+.divMainImg .divMain section article h3 {
+  font-size: 1.5rem;
+  color: #0e11f1;
+  margin-bottom: 0.5rem;
+}
+.divMainImg .divMain section article ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: 1fr;
+}
+.divMainImg .divMain section article ul li {
+  margin: 0.5rem 0;
+  padding-left: 1.5rem;
+  position: relative;
+}
+.divMainImg .divMain section article ul li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #1ab1bc;
+  font-size: 1.5rem;
+  line-height: 0.5;
+}
+.divMainImg .divMain section article ul li:hover {
+  color: #0e11f1;
+  font-weight: bold;
+}
+.divMainImg .divContenidoImg {
+  width: 400px;
+  margin-top: 30px;
+}
+.divMainImg .divContenidoImg img {
+  margin-left: 33px;
+  margin-right: 5px;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: hsla(0, 0%, 85%, 0.5);
+  color: #fff;
+  gap: 20px;
+}
+footer .footerSobreMi,
+footer .footerSuscripcion {
+  flex: 1;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+footer .footerSobreMi:hover,
+footer .footerSuscripcion:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+footer .footerSobreMi {
+  margin-left: 50px;
+  margin-right: -15px;
+  text-align: center;
+  background-color: #035569;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+footer .footerSobreMi .miFoto img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+footer .footerSobreMi .miFoto img:hover {
+  transform: scale(1.1);
+}
+footer .footerSobreMi .footerInfoSobreMi h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+footer .footerSobreMi .footerInfoSobreMi p {
+  font-size: 16px;
+  color: #ccc;
+}
+footer .footerSobreMi .footerRedesSociales {
+  margin-top: 20px;
+}
+footer .footerSobreMi .footerRedesSociales a {
+  margin-right: 10px;
+}
+footer .footerSobreMi .footerRedesSociales a img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+footer .footerSobreMi .footerRedesSociales a img:hover {
+  transform: scale(1.2);
+}
+footer .footerSuscripcion {
+  background: linear-gradient(135deg, #008fb3, #333);
+  background-size: 300% 300%;
+  animation: gradientAnimation 6s ease infinite;
+  text-align: center;
+  color: white;
+  margin-left: 70px;
+}
+footer .footerSuscripcion h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+footer .footerSuscripcion form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+footer .footerSuscripcion form input[type=text],
+footer .footerSuscripcion form input[type=email] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+footer .footerSuscripcion form input[type=text]:focus,
+footer .footerSuscripcion form input[type=email]:focus {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+footer .footerSuscripcion form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f16767;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 6px 2px rgb(33, 33, 33);
+  /* Efecto al pulsar el botón */
+}
+footer .footerSuscripcion form button:hover {
+  background-color: #f16767;
+}
+footer .footerSuscripcion form button:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 4px rgb(86, 85, 85);
+}
+
+/* Keyframe Animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.creativeCommons {
+  text-align: center;
+  padding: 20px;
+  padding-left: 60px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: hsla(0, 0%, 85%, 0.5);
+  position: relative;
+  margin-left: 0;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+  /* Añadir espacio entre elementos y borde superior */
+}
+.creativeCommons p {
+  padding-top: 5px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+}
+
+@media all and (min-width: 768px) {
+  .divMainImg {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  .divMainImg .divMain {
+    width: 40%;
+    margin-left: 70px;
+    margin-right: 0;
+  }
+  .divMainImg .divContenidoImg {
+    width: 35%;
+    margin-right: 0;
+    align-self: flex-start;
+  }
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .footerSobreMi,
+  footer .footerSuscripcion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  footer .footerSobreMi {
+    text-align: center;
+  }
+  footer .footerRedesSociales {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  footer .footerSuscripcion {
+    align-self: center;
+  }
+  .creativeCommons p {
+    font-size: 17px;
+  }
+}
+@media all and (min-width: 1200px) {
+  .divMainImg {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-right: 70px;
+  }
+  .divMainImg .divContenidoImg .img1 {
+    margin-top: 150px;
+    margin-bottom: 1000px;
+  }
+  .divMainImg .divContenidoImg .img2 {
+    margin-bottom: 750px;
+  }
+  .menu-toggle {
+    display: none;
+  }
+  #navMenu {
+    display: none;
+  }
+  #navMenuHorizontal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 40%;
+    width: 100%;
+    max-width: 310px;
+    margin: 0 auto;
+    height: 50px;
+    background-color: #243241;
+    border-radius: 8px;
+    font-size: 0;
+    z-index: 1000;
+  }
+  #navMenuHorizontal a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 15px;
+    display: inline-block;
+    width: 100px;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  #navMenuHorizontal a:nth-child(2) {
+    width: 110px;
+  }
+  #navMenuHorizontal .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all 0.5s ease;
+    border-radius: 8px;
+  }
+  #navMenuHorizontal .start-principal,
+  #navMenuHorizontal a:nth-child(1):hover ~ .animation {
+    width: 100px;
+    left: 0;
+    background-color: #ff9900;
+  }
+  #navMenuHorizontal .start-articulos,
+  #navMenuHorizontal a:nth-child(2):hover ~ .animation {
+    width: 110px;
+    left: 100px;
+    background-color: #1abc9c;
+  }
+  #navMenuHorizontal .start-contacto,
+  #navMenuHorizontal a:nth-child(3):hover ~ .animation {
+    width: 100px;
+    left: 210px;
+    background-color: #9b59b6;
+  }
+  header .divHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: 20px;
+    margin-right: 20px;
+    height: 200px;
+    padding: 50px;
+  }
+  header .divHeader .divHeaderTitulo h1 {
+    font-size: 30px;
+  }
+  .divMain {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  .creativeCommons p {
+    font-size: 20px;
+  }
+}/*# sourceMappingURL=individualArticulo1.css.map */

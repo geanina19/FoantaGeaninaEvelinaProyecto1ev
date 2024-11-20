@@ -1,0 +1,863 @@
+// Variables de color y estilo
+$background-color: #D9D9D9; // Color de fondo para el contenedor de menú
+$text-color: #333; // Color de texto en contraste
+$highlight-color: #a200ff;
+// $neon-verdeOscuro: #00796b;
+// $neon-verdeClaro: #1abc9c;
+$hover-blue: #0056b3;
+$neon-azulOscuro: #008fb3;
+// $neon-azulClaro: #00ccff;
+
+$nav-bg-color: #34495e;
+$nav-border-radius: 8px;
+$link-font-size: 15px;
+$animation-duration: 0.5s;
+$animation-easing: ease;
+
+$color-principal: #ff9900;
+$color-articulos: #1abc9c;
+$color-contacto: #9b59b6;
+
+$texto-blanco: #FFFFFF;
+$font-tiulos: myFirstFont;
+
+
+@font-face {
+    font-family: myFirstFont;
+    src: url('../fonts/Orbitron-VariableFont_wght.ttf');
+}
+
+// Estilos generales
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #202d3a;
+    overflow-x: hidden;
+}
+
+// Mixin para el estilo de hover de los ítems del menú
+@mixin hover-item($bg-color, $text-color, $box-shadow-color) {
+    background-color: lighten($bg-color, 10%);
+    box-shadow: 0px 4px 12px rgba($box-shadow-color, 0.3);
+    transform: scale(1.05); // Aumento de tamaño en hover
+    transition: all 0.3s ease;
+
+    a {
+        color: $text-color;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: $font-tiulos;
+        text-transform: uppercase;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+
+        &:hover {
+            color: $highlight-color;
+            text-shadow: 0px 0px 6px $highlight-color; // Efecto neón en hover
+        }
+    }
+}
+
+// Contenedor del menú (barra lateral)
+.menu-toggle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 50px; // Ancho de la barra lateral //width: 55px;
+    height: 100vh; // Altura completa del navegador
+    background-color: $background-color; // Fondo de color #D9D9D9
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+
+    img {
+        width: 80%; // Ajusta el tamaño del ícono dentro del contenedor
+        height: auto;
+    }
+}
+
+// Menú vertical para pantallas pequeñas
+#navMenu {
+    position: fixed;
+    top: 0;
+    left: 30px;
+    width: 250px;
+    height: 100%;
+    padding-left: 25px;
+    background-color: rgba(217, 217, 217, 0.9);
+    color: $text-color;
+    transform: translateX(-100%); // Comienza oculto
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    &.open {
+        transform: translateX(0);
+        box-shadow: 4px 0px 20px rgba(0, 143, 179, 0.4); // Sombra al abrir el menú
+    }
+
+    .navLista {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+
+        .navItem {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 6px;
+
+            // Aplicamos el mixin para los efectos hover
+            @include hover-item($neon-azulOscuro, $texto-blanco, $neon-azulOscuro);
+
+            img {
+                margin-right: 10px;
+                width: 35px;
+                height: 35px;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: rotate(15deg); // Rotación ligera de ícono en hover
+                }
+            }
+        }
+    }
+}
+
+#navMenuHorizontal {
+    display: none;
+}
+
+header {
+    .divHeader {
+        position: relative; // Contenedor principal para posicionar el texto
+        width: 97%;
+        min-height: 200px; // Altura mínima para asegurar que la imagen sea visible
+        max-height: 500px; // Altura máxima para el contenedor
+        overflow: hidden; // Para evitar que el contenido desborde si es necesario
+        margin-left: 20px;
+        margin-bottom: 30px;
+        border-radius: 8px;
+
+        .header-img {
+            width: 100%;
+            height: auto; // Mantiene la proporción de la imagen
+        }
+
+        .divHeaderTitulo {
+            position: absolute; // Superpone el texto
+            top: 50%; // Centra verticalmente
+            left: 50%; // Centra horizontalmente
+            transform: translate(-50%, -50%); // Ajusta el centrado exacto
+            background-color: rgba(217, 217, 217, 0.8); // Color de fondo con transparencia
+            padding: 30px 30px; // Espacio alrededor del texto
+            margin-left: 30px;
+            border-radius: 5px; // Bordes redondeados
+            text-align: center;
+            //font-size: 26px;
+
+            h1 {
+                font-family: $font-tiulos; // Aplica el tipo de letra que definiste en tu SCSS
+                color: #333; // Color del texto
+                margin: 0;
+                transition: transform 0.6s ease;
+
+                &:hover {
+                    transform: rotate(360deg); // Rotación de 360 grados
+                    color: #a200ff; // Cambia el color en hover
+
+                    span {
+                        color: #333;
+                    }
+
+                }
+
+                hr {
+                    border: 1px dotted black;
+                }
+
+                span {
+                    color: #a200ff;
+                    display: inline-block; // Permite que `transform` funcione
+                    transition: color 0.3s ease, transform 0.3s ease;
+
+                    &:hover {
+                        color: rgb(104, 4, 104);
+                        transform: scale(1.7); // Ampliación suave en hover
+                        text-shadow: 2px 2px 8px rgba(104, 4, 104, 0.8); // Sombra suave en hover
+                    }
+                }
+
+
+            }
+        }
+    }
+}
+
+.divMain {
+    background-color: $background-color;
+    border-radius: 10px;
+    margin: 40px 10px 0 75px; // Combina los márgenes
+    padding: 5%;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+
+    .seccionArticulo1,
+    .seccionArticulo2,
+    .seccionArticulo3 {
+
+        &:hover {
+            border-radius: 10px;
+            transform: translateY(-10px) scale(1.03); // Eleva y escala ligeramente
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2), 0 6px 20px rgba(0, 0, 0, 0.19); // Mejora el efecto de sombra
+        }
+
+        .video {
+            width: 100%;
+            height: auto;
+            border-radius: 10px 10px 0 0; // Esquinas superiores redondeadas
+            object-fit: contain;
+            display: block; // Asegura que los videos no sean inline-block
+
+        }
+
+        .titulo {
+            font-family: $font-tiulos;
+            border: 1px solid $neon-azulOscuro;
+            border-radius: 0 0 10px 10px; // Esquinas inferiores redondeadas
+            font-size: 12px;
+            text-align: center;
+            background-color: $neon-azulOscuro;
+            color: #000000;
+
+            padding: 15px;
+            position: relative;
+            display: inline-block;
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: #000000;
+                color: $neon-azulOscuro;
+                filter: brightness(1.1); // Aumenta el brillo al pasar el mouse
+                //transform: scale(1.05);
+
+                padding-right: 25px;
+            }
+
+            h2 {
+                display: inline-block;
+                position: relative;
+                transition: 0.3s;
+
+                &::after {
+                    content: '\00bb'; // Flecha especial
+                    position: absolute;
+                    opacity: 0; // Inicialmente oculto
+                    top: 50%; // Centrada verticalmente
+                    right: -20px; // Fuera del área visible
+                    transform: translateY(-50%); // Ajuste para centrar verticalmente
+                    transition: opacity 0.3s, right 0.3s; // Suaviza la animación
+                }
+
+                &:hover::after {
+                    opacity: 1; // Muestra la flecha al hacer hover
+                    right: 0; // Mueve la flecha hacia la derecha
+                }
+            }
+
+            a {
+                text-decoration: none;
+                color: inherit; // Mantiene el color del texto del enlace
+                //transition: color 0.3s ease; // Transición para el enlace
+            }
+        }
+    }
+
+    // Clases específicas por sección si es necesario
+    .seccionArticulo1 {
+        .articulo1Vid .videoArticulo1Serio {
+            @extend .video;
+        }
+
+        //para que no se vea el video funny
+        .videoArticulo1Funny {
+            display: none;
+        }
+
+        .articulo1Titulo {
+            @extend .titulo;
+        }
+    }
+
+    .seccionArticulo2 {
+        .articulo2Vid .videoArticulo2 {
+            @extend .video;
+        }
+
+        .articulo2Titulo {
+            @extend .titulo;
+        }
+    }
+
+    .seccionArticulo3 {
+        .articulo3Vid .videoArticulo3 {
+            @extend .video;
+        }
+
+        .articulo3Titulo {
+            @extend .titulo;
+        }
+    }
+}
+
+.paginacion {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin: 40px 0;
+    margin-left: 50px;
+
+    // Estilos generales para todos los enlaces
+    a {
+        text-decoration: none;
+        font-family: $font-tiulos; // Fuente para los enlaces
+        font-size: 16px;
+        color: $neon-azulOscuro;
+        border: 2px solid $neon-azulOscuro; // Aseguramos que todos los elementos tengan borde
+        border-radius: 5px;
+        padding: 10px 20px;
+        text-align: center;
+        transition: all 0.3s ease;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $neon-azulOscuro;
+            color: white;
+            transform: translateY(-4px); // Animación suave al hacer hover
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+        }
+    }
+
+    // Especificaciones para cada clase
+    .paginacionItem1,
+    // Flecha izquierda (&laquo;)
+    .paginacionItem4 {
+        // Flecha derecha (&raquo;)
+        font-size: 18px;
+        font-weight: bold;
+        padding: 10px 15px; // Ajustamos el ancho para que sean más compactas
+    }
+
+    .paginacionItem2,
+    .paginacionItem3 {
+        // Número "1"
+        font-style: italic;
+        font-weight: bold;
+    }
+
+    // Estilo para el elemento activo
+    .active {
+        background-color: $neon-azulOscuro;
+        color: white;
+        border-color: $neon-azulOscuro;
+        cursor: default; // Cursor normal, ya que no es clickeable
+        transform: translateY(-4px); // Elevar el elemento activo
+        z-index: 1; // Asegura que se muestre por encima
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); // Sombra más destacada
+
+        &:hover {
+            transform: translateY(0px);
+        }
+    }
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: hsl(0, 0%, 85%, 0.5);
+    color: #fff;
+    gap: 20px;
+
+    .footerSobreMi,
+    .footerSuscripcion {
+        flex: 1;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    .footerSobreMi {
+        margin-left: 50px;
+        margin-right: -15px;
+        text-align: center;
+        background-color: #035569;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        .miFoto {
+            img {
+                width: 120px;
+                height: 120px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-bottom: 15px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: scale(1.1);
+                }
+            }
+        }
+
+        .footerInfoSobreMi {
+            h3 {
+                font-size: 20px;
+                margin-bottom: 10px;
+                color: #fff;
+            }
+
+            p {
+                font-size: 16px;
+                color: #ccc;
+            }
+        }
+
+        .footerRedesSociales {
+            margin-top: 20px;
+
+            a {
+                margin-right: 10px;
+
+                img {
+                    width: 30px;
+                    height: 30px;
+                    transition: transform 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.2);
+                    }
+                }
+            }
+        }
+    }
+
+    .footerSuscripcion {
+        background: linear-gradient(135deg, $neon-azulOscuro, #333);
+        background-size: 300% 300%;
+        animation: gradientAnimation 6s ease infinite;
+        text-align: center;
+        color: white;
+        margin-left: 70px;
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            input[type="text"],
+            input[type="email"] {
+                padding: 10px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+                &:focus {
+                    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+                }
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                background-color: #f16767;
+                color: white;
+                cursor: pointer;
+                //transition: background-color 0.3s ease, transform 0.2s ease;
+                transition: all 0.3s ease;
+                box-shadow: 4px 6px 2px rgb(33, 33, 33);
+
+                &:hover {
+                    background-color: #f16767;
+                    //box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+                }
+
+                /* Efecto al pulsar el botón */
+                &:active {
+                    //transform: scale(0.95);
+                    transform: translateY(3px);
+                    box-shadow: 0 2px 4px rgb(86, 85, 85);
+                }
+            }
+        }
+    }
+}
+
+/* Keyframe Animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.creativeCommons {
+    text-align: center;
+    padding: 20px;
+    padding-left: 60px;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: hsl(0, 0%, 85%, 0.5);
+    position: relative;
+    margin-left: 0;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+
+    /* Añadir espacio entre elementos y borde superior */
+    p {
+        padding-top: 5px;
+        font-size: 14px;
+        color: rgb(0, 0, 0);
+    }
+}
+
+@media all and (min-width: 768px) {
+    header {
+        .divHeaderTitulo {
+            padding: 50px 70px;
+            font-size: 26px;
+        }
+    }
+
+    .divMain {
+        .seccionArticulo1,
+        .seccionArticulo2, 
+        .seccionArticulo3 {
+
+            display: flex; // Usamos Flexbox para organizar en fila
+            flex-direction: row; // Aseguramos la disposición horizontal
+            align-items: stretch; // Estiramos los elementos para ocupar la misma altura
+            //margin-bottom: 5px;
+            //max-height: 200px;
+
+            .articulo1Vid, 
+            .articulo2Vid, 
+            .articulo3Vid {
+                flex: 1; // Ocupa un espacio proporcional en la fila
+                max-width: 50%; // Limita el ancho del video al 50% del contenedor 
+
+                .videoArticulo1Serio {
+                    display: none; // Oculta el video serio
+                }
+
+                .videoArticulo1Funny {
+                    display: block; // Muestra el video divertido
+
+                    width: 100%;
+                    height: auto;
+                    max-height: 300px;
+                    border-radius: 10px 0 0 10px; // arribaIzquieda arribaDerecha abajoDerecha abajoIzquierda
+                    object-fit: contain;
+                    background-color: $texto-blanco;
+                }
+
+                .videoArticulo2, 
+                .videoArticulo3 {
+                    display: block; // Muestra el video divertido
+
+                    width: 100%;
+                    max-height: 300px;
+                    border-radius: 10px 0 0 10px;
+                    height: 100%;
+                    object-fit: cover; // Ajusta el video para llenar el contenedor
+                }
+
+            }
+
+            .articulo1Titulo, 
+            .articulo2Titulo, 
+            .articulo3Titulo {
+                flex: 1; // Ocupa el mismo espacio proporcional que el video
+                max-width: 50%; // Limita el ancho del texto al 50% del contenedor
+                font-size: 16px;
+                line-height: 1.5; // Mejora la legibilidad
+                text-align: left; // Alinea el texto a la izquierda
+                padding: 10px;
+                display: flex; // Aseguramos que el contenido interno respete el tamaño
+                align-items: center;
+                border-radius: 0 10px 10px 0;
+                margin-left: -10px;
+            }
+        }
+    }
+
+    .paginacion {
+        gap: 15px;
+
+        a {
+            font-size: 18px; // Incrementa el tamaño de fuente
+            padding: 12px 25px; // Incrementa el relleno
+        }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; // Esto asegura que los elementos dentro del footer estén centrados verticalmente.
+
+        .footerSobreMi,
+        .footerSuscripcion {
+            display: flex;
+            flex-direction: column; // Asegura que los elementos dentro de cada sección estén apilados verticalmente.
+            align-items: center; // Centra los elementos horizontalmente dentro de cada sección.
+        }
+
+        .footerSobreMi {
+            text-align: center; // Centra el texto en la sección "Sobre mí"
+        }
+
+        .footerRedesSociales {
+            display: flex;
+            justify-content: center; // Centra los iconos de redes sociales.
+            gap: 10px; // Espacio entre los iconos de redes sociales.
+        }
+
+        .footerSuscripcion {
+            align-self: center; // Centra verticalmente la sección de suscripción
+        }
+    }
+
+    .creativeCommons {
+        p {
+            font-size: 17px;
+        }
+    }
+}
+
+@media all and (min-width: 1200px) {
+
+    header {
+        margin-top: 20px; // Ajusta el margen superior del header en pantallas grandes si es necesario
+
+        .divHeaderTitulo {
+            padding: 50px 70px;
+            font-size: 32px;
+        }
+    }
+
+    .menu-toggle {
+        display: none; // Oculta el menú de navegación para móvil
+    }
+
+    #navMenu {
+        display: none; // Oculta el menú vertical en pantallas grandes
+    }
+
+    #navMenuHorizontal {
+        display: flex; // Muestra el menú horizontal
+
+        gap: 10px; // Espacio entre los enlaces
+        position: relative; // Posiciona el menú debajo del header
+        top: 0; // Posición en la parte superior
+        width: 100%; // Ancho completo para que abarque toda la parte superior
+        max-width: 310px; // Limita el ancho máximo del menú
+        margin: 0 auto; // Centra el menú
+        //margin-top: -5;
+        margin-bottom: 60px;
+        height: 50px;
+        background-color: $nav-bg-color;
+        border-radius: $nav-border-radius;
+        font-size: 0;
+        z-index: 1000;
+
+        &.sticky {
+            position: fixed;
+            left: 50%;
+            transform: translateX(-50%);
+            margin: 0 auto;
+            width: 100%; // Ocupa el ancho completo de la pantalla en modo sticky
+            z-index: 1000;
+        }
+
+        a {
+            line-height: 50px;
+            height: 100%;
+            font-size: $link-font-size;
+            display: inline-block;
+            width: 100px;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            color: $texto-blanco;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+
+            &:nth-child(1) {
+                padding-left: 10px;
+            }
+
+            &:nth-child(2) {
+                padding-left: 2px;
+                width: 110px;
+            }
+
+            &:nth-child(3) {
+                padding-left: 3px;
+                padding-right: 10px;
+            }
+        }
+
+        .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 0;
+            transition: all $animation-duration $animation-easing;
+            border-radius: $nav-border-radius;
+        }
+
+        // Mixin para crear animaciones específicas
+        @mixin link-animation($width, $left, $color) {
+            width: $width;
+            left: $left;
+            background-color: $color;
+        }
+
+        // Aplicar animación en cada enlace
+        .start-principal,
+        a:nth-child(1):hover~.animation {
+            @include link-animation(100px, 0, $color-principal);
+        }
+
+        .start-articulos,
+        a:nth-child(2):hover~.animation {
+            @include link-animation(110px, 100px, $color-articulos);
+        }
+
+        .start-contacto,
+        a:nth-child(3):hover~.animation {
+            @include link-animation(100px, 210px, $color-contacto);
+        }
+    }
+
+    .divMain { 
+        margin-left: 25px;
+        margin-right: 25px;
+
+        display: grid; // Cambiamos a grid layout
+        grid-template-columns: repeat(2, 1fr); // Dos columnas iguales
+        column-gap: 35px; // Espaciado horizontal entre las columnas
+        row-gap: 20px; // Aumentamos el espaciado vertical entre las filas
+
+        .seccionArticulo1,
+        .seccionArticulo2,
+        .seccionArticulo3 {
+            display: flex;
+            flex-direction: row; // Mantiene los elementos del artículo (video y texto) en fila
+            align-items: stretch; // Asegura que todos los elementos tengan la misma altura
+
+            .articulo1Vid, 
+            .articulo2Vid, 
+            .articulo3Vid {
+                flex: 1; // Ocupa el mismo espacio proporcional que el texto
+                max-width: 50%; // Limita el ancho del video al 50% del contenedor
+                height: 100%; // Asegura que el video ocupe toda la altura del contenedor
+
+                .videoArticulo1Serio {
+                    display: none; // Oculta el video serio
+                }
+
+                .videoArticulo1Funny,
+                .videoArticulo2,
+                .videoArticulo3 {
+                    display: block; // Asegura que el video se muestre
+                    width: 100%;
+                    height: 100%; // Llenar toda la altura disponible
+                    max-height: 100%;
+                    object-fit: cover; // Ajusta el video para llenar el contenedor sin deformarse
+                    border-radius: 10px 0 0 10px; // Esquinas redondeadas
+                }
+            }
+
+            .articulo1Titulo, 
+            .articulo2Titulo, 
+            .articulo3Titulo {
+                flex: 1; // Ocupa el mismo espacio proporcional que el video
+                max-width: 50%; // Limita el ancho del texto al 50% del contenedor
+                font-size: 16px;
+                line-height: 1.5;
+                text-align: left;
+                //padding: 10px;
+                display: flex;
+                align-items: center;
+                border-radius: 0 10px 10px 0;
+                margin-left: -10px;
+            }
+        }
+
+        .seccionArticulo3 {
+            margin-top: 15px;
+        }
+    }
+
+    .paginacion {
+        gap: 20px;
+
+        a {
+            font-size: 20px; // Incrementa aún más el tamaño de fuente
+            padding: 15px 30px; // Incrementa el relleno aún más
+        }
+    }
+
+    .creativeCommons {
+        p {
+            font-size: 20px;
+        }
+    }
+}

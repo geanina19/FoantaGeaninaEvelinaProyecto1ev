@@ -1,0 +1,819 @@
+@charset "UTF-8";
+@font-face {
+  font-family: myFirstFont;
+  src: url("../fonts/Orbitron-VariableFont_wght.ttf");
+}
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-image: url("../img/fondoCuantico.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+}
+
+.fondo {
+  background-color: hsla(0, 0%, 85%, 0.3);
+}
+
+.menu-toggle {
+  position: fixed;
+  top: 0;
+  left: 0;
+  padding-left: 7px;
+  padding-right: 7px;
+  width: 50px;
+  height: 100vh;
+  background-color: #D9D9D9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+}
+.menu-toggle img {
+  width: 80%;
+  height: auto;
+}
+
+#navMenu {
+  position: fixed;
+  top: 0;
+  left: 30px;
+  width: 250px;
+  height: 100%;
+  padding-left: 25px;
+  background-color: rgba(217, 217, 217, 0.9);
+  color: #333;
+  transform: translateX(-100%);
+  transition: transform 0.4s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 500;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+#navMenu.open {
+  transform: translateX(0);
+  box-shadow: 4px 0px 20px rgba(0, 143, 179, 0.4);
+}
+#navMenu .navLista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  align-items: flex-start;
+}
+#navMenu .navLista .navItem {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: 6px;
+  background-color: #00b8e6;
+  box-shadow: 0px 4px 12px rgba(0, 143, 179, 0.3);
+  transform: scale(1.05);
+  transition: all 0.3s ease;
+}
+#navMenu .navLista .navItem a {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: bold;
+  font-family: myFirstFont;
+  text-transform: uppercase;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+#navMenu .navLista .navItem a:hover {
+  color: #a200ff;
+  text-shadow: 0px 0px 6px #a200ff;
+}
+#navMenu .navLista .navItem img {
+  margin-right: 10px;
+  width: 35px;
+  height: 35px;
+  transition: transform 0.3s ease;
+}
+#navMenu .navLista .navItem img:hover {
+  transform: rotate(15deg);
+}
+
+#navMenuHorizontal {
+  display: none;
+}
+
+/* Estilos para el header */
+header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 20px;
+  padding-left: 50px;
+}
+header .divHeader {
+  width: 100%;
+  max-width: 1200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+header .divHeader .divHeaderTitulo h1 {
+  font-family: myFirstFont;
+  font-size: 26px;
+  color: #FFFFFF;
+  text-align: center;
+  margin: 0;
+  text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000;
+  transition: transform 0.3s ease;
+}
+header .divHeader .divHeaderTitulo h1:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.1);
+}
+header .divHeader .divHeaderVid {
+  width: 100%;
+  padding: 0 10%;
+  box-sizing: border-box;
+}
+header .divHeader .divHeaderVid video {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+header .divHeader .divHeaderApodo p {
+  font-size: 1.2rem;
+  color: #333;
+  text-align: center;
+  margin: 0;
+  transition: transform 0.3s ease;
+  background-color: #ffffff;
+  padding: 10px;
+  border-radius: 10px;
+}
+header .divHeader .divHeaderApodo p:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.2);
+  background-color: #000;
+  color: #FFFFFF;
+  padding: 10px;
+  border-radius: 10px;
+}
+header .divHeader .divHeaderApodo img {
+  margin-bottom: -8px;
+  margin-top: -4px;
+  width: 35px;
+  height: 35px;
+}
+
+.divMain {
+  background-color: #D9D9D9;
+  color: #333;
+  border-radius: 8px;
+  margin-left: 75px;
+  margin-right: 10px;
+  margin-top: 50px;
+  padding: 5%;
+}
+.divMain h2 {
+  font-family: "Arial";
+  font-size: 1.8rem;
+  color: #333;
+  text-shadow: 0 0 3px #008fb3;
+  text-align: center;
+  margin-bottom: 15px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.divMain p {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+.divMain ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+.divMain ul li {
+  position: relative;
+  padding: 10px;
+  font-size: 1rem;
+  margin-bottom: 15px;
+  color: #333;
+  background-color: #e6faff;
+  border-left: 5px solid #008fb3;
+  line-height: 1.5;
+  overflow: hidden;
+  transition: color 0.8s ease, background-color 0.8s ease;
+}
+.divMain ul li strong {
+  color: #006680;
+}
+.divMain ul li::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 0;
+  height: 100%;
+  background-color: #008fb3 !important;
+  transition: width 2.5s ease;
+  z-index: -1;
+}
+.divMain ul li:hover::before {
+  width: 100%;
+}
+.divMain ul li:hover {
+  color: #FFFFFF !important;
+  z-index: 1;
+}
+.divMain ul li:hover strong {
+  color: #333 !important;
+  text-decoration: underline;
+}
+.divMain .divIntroduccionImg,
+.divMain .divFuturoImg {
+  display: flex;
+}
+.divMain .divIntroduccionImg img,
+.divMain .divFuturoImg img {
+  transition: transform 1.6s ease;
+}
+.divMain .divIntroduccionImg img:hover,
+.divMain .divFuturoImg img:hover {
+  transform: scaleX(-1);
+}
+.divMain .divPrincipalesImg,
+.divMain .divAplicacionesImg,
+.divMain .divDesafiosImg {
+  display: inline-block;
+}
+.divMain .divPrincipalesImg img,
+.divMain .divAplicacionesImg img,
+.divMain .divDesafiosImg img {
+  transition: transform 0.6s ease;
+}
+.divMain .divPrincipalesImg img:hover,
+.divMain .divAplicacionesImg img:hover,
+.divMain .divDesafiosImg img:hover {
+  transform: perspective(1000px) rotateX(15deg) rotateY(15deg) rotateZ(10deg);
+}
+.divMain .divIntroduccionImg,
+.divMain .divPrincipalesImg,
+.divMain .divAplicacionesImg,
+.divMain .divDesafiosImg,
+.divMain .divFuturoImg {
+  justify-content: center;
+  align-items: center;
+  max-width: 100%;
+}
+.divMain .divIntroduccionImg img,
+.divMain .divPrincipalesImg img,
+.divMain .divAplicacionesImg img,
+.divMain .divDesafiosImg img,
+.divMain .divFuturoImg img {
+  width: 100%;
+  height: 200px;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 8px;
+}
+.divMain .seccionIntroduccion,
+.divMain .seccionPrincipales,
+.divMain .seccionAplicaciones,
+.divMain .seccionDesafios,
+.divMain .seccionFuturo {
+  background-color: #FFFFFF;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+.divMain .seccionIntroduccion:hover,
+.divMain .seccionPrincipales:hover,
+.divMain .seccionAplicaciones:hover,
+.divMain .seccionDesafios:hover,
+.divMain .seccionFuturo:hover {
+  transform: translateY(-10px);
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+  background-color: white;
+}
+.divMain .seccionIntroduccion ul li:hover,
+.divMain .seccionPrincipales ul li:hover,
+.divMain .seccionAplicaciones ul li:hover,
+.divMain .seccionDesafios ul li:hover,
+.divMain .seccionFuturo ul li:hover {
+  background-color: white;
+}
+
+.seccionArticulos {
+  background-color: #ff6f61;
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+.seccionArticulos h3 {
+  font-family: "Arial", sans-serif;
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 10px;
+  line-height: 1.4;
+}
+.seccionArticulos h3 a {
+  color: #FFFFFF;
+  font-weight: bold;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+.seccionArticulos:hover {
+  background-color: #FFFFFF;
+  transform: translateY(-5px);
+}
+.seccionArticulos:hover a {
+  color: #ff6f61;
+}
+
+footer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 40px;
+  padding: 20px;
+  background-color: hsla(0, 0%, 85%, 0.5);
+  color: #fff;
+  gap: 20px;
+}
+footer .footerSobreMi,
+footer .footerSuscripcion {
+  flex: 1;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+footer .footerSobreMi:hover,
+footer .footerSuscripcion:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+footer .footerSobreMi {
+  margin-left: 50px;
+  margin-right: -15px;
+  text-align: center;
+  background-color: #035569;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+footer .footerSobreMi .miFoto img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  transition: transform 0.3s ease;
+}
+footer .footerSobreMi .miFoto img:hover {
+  transform: scale(1.1);
+}
+footer .footerSobreMi .footerInfoSobreMi h3 {
+  font-size: 20px;
+  margin-bottom: 10px;
+  color: #fff;
+}
+footer .footerSobreMi .footerInfoSobreMi p {
+  font-size: 16px;
+  color: #ccc;
+}
+footer .footerSobreMi .footerRedesSociales {
+  margin-top: 20px;
+}
+footer .footerSobreMi .footerRedesSociales a {
+  margin-right: 10px;
+}
+footer .footerSobreMi .footerRedesSociales a img {
+  width: 30px;
+  height: 30px;
+  transition: transform 0.3s ease;
+}
+footer .footerSobreMi .footerRedesSociales a img:hover {
+  transform: scale(1.2);
+}
+footer .footerSuscripcion {
+  background: linear-gradient(135deg, #008fb3, #333);
+  background-size: 300% 300%;
+  animation: gradientAnimation 6s ease infinite;
+  text-align: center;
+  color: white;
+  margin-left: 70px;
+}
+footer .footerSuscripcion h2 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+footer .footerSuscripcion form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+footer .footerSuscripcion form input[type=text],
+footer .footerSuscripcion form input[type=email] {
+  padding: 10px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+footer .footerSuscripcion form input[type=text]:focus,
+footer .footerSuscripcion form input[type=email]:focus {
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+}
+footer .footerSuscripcion form button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f16767;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 4px 6px 2px rgb(33, 33, 33);
+  /* Efecto al pulsar el botón */
+}
+footer .footerSuscripcion form button:hover {
+  background-color: #f16767;
+}
+footer .footerSuscripcion form button:active {
+  transform: translateY(3px);
+  box-shadow: 0 2px 4px rgb(86, 85, 85);
+}
+
+/* Keyframe Animation */
+@keyframes gradientAnimation {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+.creativeCommons {
+  text-align: center;
+  padding: 20px;
+  padding-left: 60px;
+  font-size: 16px;
+  color: rgb(0, 0, 0);
+  background-color: hsla(0, 0%, 85%, 0.5);
+  position: relative;
+  margin-left: 0;
+  box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+  /* Añadir espacio entre elementos y borde superior */
+}
+.creativeCommons input[type=button] {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  margin-left: 45px;
+}
+.creativeCommons input[type=button]:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+.creativeCommons input[type=button]:active {
+  transform: scale(1);
+}
+.creativeCommons p {
+  padding-top: 5px;
+  font-size: 14px;
+  color: rgb(0, 0, 0);
+}
+
+@media all and (min-width: 768px) {
+  header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 20px;
+    padding-left: 50px;
+  }
+  header .divHeader {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 80%;
+    margin: 0 auto;
+  }
+  header .divHeader .divHeaderTitulo {
+    width: 30%;
+  }
+  header .divHeader .divHeaderTitulo h1 {
+    font-size: 32px;
+    text-align: left;
+  }
+  header .divHeader .divHeaderVid {
+    width: 40%;
+    padding: 0;
+  }
+  header .divHeader .divHeaderApodo {
+    width: auto;
+    display: flex;
+    align-items: center;
+    margin-left: 0;
+  }
+  header .divHeader .divHeaderApodo p {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-align: center;
+    margin: 0;
+  }
+  header .divHeader .divHeaderApodo p img {
+    margin-bottom: -1px;
+    margin-top: 3px;
+    transform: rotate(90deg);
+  }
+  .divMain {
+    display: flex;
+    flex-direction: column;
+  }
+  .divMain .divIntroduccionTitulo,
+  .divMain .divPrincipalesTitulo,
+  .divMain .divAplicacionesTitulo,
+  .divMain .divDesafiosTitulo,
+  .divMain .divFuturoTitulo {
+    align-self: center;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .divMain .divIntroduccionInfo,
+  .divMain .divIntroduccionImg,
+  .divMain .divPrincipalesInfo,
+  .divMain .divPrincipalesImg,
+  .divMain .divAplicacionesInfoLista,
+  .divMain .divAplicacionesImg,
+  .divMain .divDesafiosInfo,
+  .divMain .divDesafiosImg,
+  .divMain .divFuturoInfo,
+  .divMain .divFuturoImg {
+    display: inline-block;
+    width: 48%;
+    vertical-align: top;
+  }
+  .divMain .divIntroduccionImg {
+    padding-top: 20%;
+    padding-left: 15px;
+  }
+  .divMain .divPrincipalesImg {
+    padding-top: 5%;
+    padding-left: 15px;
+  }
+  .divMain .divPrincipalesImg .img11 {
+    margin-bottom: 25%;
+  }
+  .divMain .divPrincipalesImg .img12 {
+    margin-bottom: 15%;
+  }
+  .divMain .divAplicacionesImg {
+    padding-top: 10px;
+    padding-left: 15px;
+  }
+  .divMain .divAplicacionesImg .img21 {
+    margin-bottom: 17px;
+  }
+  .divMain .divAplicacionesImg .img22 {
+    margin-bottom: 40px;
+  }
+  .divMain .divDesafiosImg {
+    padding-left: 15px;
+  }
+  .divMain .divDesafiosImg img {
+    width: 80%;
+    height: 110px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 8px;
+  }
+  .divMain .divFuturoImg {
+    padding-top: 95px;
+    padding-left: 15px;
+  }
+  .divMain .divIntroduccionInfo,
+  .divMain .divPrincipalesInfo,
+  .divMain .divAplicacionesInfoLista,
+  .divMain .divDesafiosInfo,
+  .divMain .divFuturoInfo {
+    margin-bottom: 30px;
+  }
+  .divMain .divPrincipalesInfo ul li {
+    margin-bottom: 13%;
+  }
+  .divMain .divAplicacionesInfoLista ul li {
+    margin-bottom: 18%;
+  }
+  footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .footerSobreMi,
+  footer .footerSuscripcion {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  footer .footerSobreMi {
+    text-align: center;
+  }
+  footer .footerRedesSociales {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  footer .footerSuscripcion {
+    align-self: center;
+  }
+  .creativeCommons p {
+    font-size: 17px;
+  }
+}
+@media all and (min-width: 992px) {
+  .divMain .divIntroduccionImg {
+    padding-top: 7%;
+    padding-left: 15px;
+  }
+  .divMain .divPrincipalesInfo ul li {
+    margin-top: 8%;
+    margin-bottom: 0%;
+  }
+  .divMain .divPrincipalesImg {
+    padding-top: 1%;
+    padding-left: 15px;
+  }
+  .divMain .divPrincipalesImg .img11 {
+    margin-bottom: 1%;
+  }
+  .divMain .divPrincipalesImg .img12 {
+    margin-bottom: 1%;
+  }
+  .divMain .divAplicacionesInfoLista ul li {
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+  .divMain .divFuturoImg {
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+}
+@media all and (min-width: 1200px) {
+  header {
+    padding-top: 80px;
+  }
+  header .divHeaderTitulo h1 {
+    transform: scale(1.7);
+  }
+  .menu-toggle {
+    display: none;
+  }
+  #navMenu {
+    display: none;
+  }
+  #navMenuHorizontal {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 40%;
+    width: 100%;
+    max-width: 310px;
+    margin: 0 auto;
+    height: 50px;
+    background-color: #243241;
+    border-radius: 8px;
+    font-size: 0;
+    z-index: 1000;
+  }
+  #navMenuHorizontal a {
+    line-height: 50px;
+    height: 100%;
+    font-size: 15px;
+    display: inline-block;
+    width: 100px;
+    position: relative;
+    z-index: 1;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: center;
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+  #navMenuHorizontal a:nth-child(2) {
+    width: 110px;
+  }
+  #navMenuHorizontal .animation {
+    position: absolute;
+    height: 100%;
+    top: 0;
+    z-index: 0;
+    transition: all 0.5s ease;
+    border-radius: 8px;
+  }
+  #navMenuHorizontal .start-principal,
+  #navMenuHorizontal a:nth-child(1):hover ~ .animation {
+    width: 100px;
+    left: 0;
+    background-color: #ff9900;
+  }
+  #navMenuHorizontal .start-articulos,
+  #navMenuHorizontal a:nth-child(2):hover ~ .animation {
+    width: 110px;
+    left: 100px;
+    background-color: #1abc9c;
+  }
+  #navMenuHorizontal .start-contacto,
+  #navMenuHorizontal a:nth-child(3):hover ~ .animation {
+    width: 100px;
+    left: 210px;
+    background-color: #9b59b6;
+  }
+  .divMain {
+    margin-left: 25px;
+    margin-right: 30px;
+    margin-top: 50px;
+    padding: 5%;
+  }
+  .divMain .divPrincipalesInfo ul li {
+    margin-top: 8%;
+    margin-bottom: 3%;
+  }
+  .divMain .divAplicacionesInfoLista ul li {
+    margin-top: 10%;
+    margin-bottom: 10%;
+  }
+  .divMain .divIntroduccionImg {
+    padding-top: 2%;
+    padding-left: 15px;
+  }
+  .divMain .divPrincipalesImg {
+    padding-top: 1%;
+    padding-left: 15px;
+  }
+  .divMain .divPrincipalesImg .img11 {
+    margin-bottom: 1%;
+  }
+  .divMain .divPrincipalesImg .img12 {
+    margin-bottom: 1%;
+  }
+  .divMain .divAplicacionesImg {
+    padding-top: 10px;
+    padding-left: 15px;
+  }
+  .divMain .divAplicacionesImg .img21 {
+    margin-bottom: 17px;
+  }
+  .divMain .divAplicacionesImg .img22 {
+    margin-bottom: 40px;
+  }
+  .divMain .divDesafiosImg {
+    padding-left: 15px;
+  }
+  .divMain .divDesafiosImg img {
+    width: 60%;
+    height: 100px;
+    -o-object-fit: cover;
+       object-fit: cover;
+    border-radius: 8px;
+  }
+  .divMain .divFuturoImg {
+    padding-top: 15px;
+    padding-left: 15px;
+  }
+  .divMain .divIntroduccionInfo,
+  .divMain .divPrincipalesInfo,
+  .divMain .divAplicacionesInfoLista,
+  .divMain .divDesafiosInfo,
+  .divMain .divFuturoInfo {
+    margin-bottom: 30px;
+  }
+  .creativeCommons p {
+    font-size: 20px;
+  }
+}/*# sourceMappingURL=index2.css.map */

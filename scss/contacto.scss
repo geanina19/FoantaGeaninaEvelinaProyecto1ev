@@ -1,0 +1,844 @@
+// Variables de color y estilo
+$background-color: #D9D9D9; // Color de fondo para el contenedor de menú
+$text-color: #333; // Color de texto en contraste
+$highlight-color: #a200ff;
+// $neon-verdeOscuro: #00796b;
+// $neon-verdeClaro: #1abc9c;
+$hover-blue: #0056b3;
+$neon-azulOscuro: #008fb3;
+// $neon-azulClaro: #00ccff;
+
+$nav-bg-color: #243241;
+$nav-border-radius: 8px;
+$link-font-size: 15px;
+$animation-duration: 0.5s;
+$animation-easing: ease;
+
+$color-principal: #ff9900;
+$color-articulos: #1abc9c;
+$color-contacto: #9b59b6;
+
+$texto-blanco: #FFFFFF;
+$font-tiulos: myFirstFont;
+
+@font-face {
+    font-family: myFirstFont;
+    src: url('../fonts/Orbitron-VariableFont_wght.ttf');
+}
+
+// Estilos generales
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    //background-color: #34495E;
+    background-image: url('../img/fondoContacto.jpg');
+    background-size: cover; // La imagen se ajusta para cubrir toda el área visible
+    background-repeat: no-repeat; // Evita que la imagen se repita
+    background-attachment: fixed; // Fija la imagen para que no se mueva al hacer scroll
+    background-position: center;
+}
+
+.fondo {
+    background-color: hsla(0, 0%, 85%, 0.5);
+    margin: 20px;
+    margin-left: 80px;
+    margin-right: 15px;
+    padding-bottom: 4px;
+    // width: 100%;
+    border-radius: 10px;
+}
+
+// Mixin para el estilo de hover de los ítems del menú
+@mixin hover-item($bg-color, $text-color, $box-shadow-color) {
+    background-color: lighten($bg-color, 10%);
+    box-shadow: 0px 4px 12px rgba($box-shadow-color, 0.3);
+    transform: scale(1.05); // Aumento de tamaño en hover
+    transition: all 0.3s ease;
+
+    a {
+        color: $text-color;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+        font-family: $font-tiulos;
+        text-transform: uppercase;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+
+        &:hover {
+            color: $highlight-color;
+            text-shadow: 0px 0px 6px $highlight-color; // Efecto neón en hover
+        }
+    }
+}
+
+// Contenedor del menú (barra lateral)
+.menu-toggle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-left: 7px;
+    padding-right: 7px;
+    width: 50px; // Ancho del ícono de menú
+    height: 100vh; // Altura completa del navegador
+    background-color: $background-color;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 1000;
+
+    img {
+        width: 80%; // Ajusta el tamaño del ícono dentro del contenedor
+        height: auto;
+    }
+}
+
+// Menú vertical para pantallas pequeñas
+#navMenu {
+    position: fixed;
+    top: 0;
+    left: 30px;
+    width: 250px;
+    height: 100%;
+    padding-left: 25px;
+    background-color: rgba(217, 217, 217, 0.9);
+    color: $text-color;
+    transform: translateX(-100%); // Comienza oculto
+    transition: transform 0.4s ease, box-shadow 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 500;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+    &.open {
+        transform: translateX(0);
+        box-shadow: 4px 0px 20px rgba(0, 143, 179, 0.4); // Sombra al abrir el menú
+    }
+
+    .navLista {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        align-items: flex-start;
+
+        .navItem {
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            border-radius: 6px;
+
+            // Aplicamos el mixin para los efectos hover
+            @include hover-item($neon-azulOscuro, $texto-blanco, $neon-azulOscuro);
+
+            img {
+                margin-right: 10px;
+                width: 35px;
+                height: 35px;
+                transition: transform 0.3s ease;
+
+                &:hover {
+                    transform: rotate(15deg); // Rotación ligera de ícono en hover
+                }
+            }
+        }
+    }
+}
+
+#navMenuHorizontal {
+    display: none;
+}
+
+header {
+    margin-bottom: 40px;
+    padding-top: 10px;
+
+    .divHeader {
+        .divHeaderTitulo {
+            font-family: myFirstFont;
+            font-size: 20px;
+            color: $texto-blanco;
+            text-align: center;
+            margin: 0;
+            text-shadow: -2px -2px 0 #000,
+                2px -2px 0 #000,
+                -2px 2px 0 #000,
+                2px 2px 0 #000;
+            transition: transform 0.3s ease;
+
+            &:hover {
+                transition: transform 0.3s ease;
+                transform: scale(0.8);
+            }
+        }
+    }
+}
+
+.divMain {
+    background-color: hsla(0, 0%, 90%, 0.8);
+
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+
+    &:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .seccionAutora {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px; // Separación con respecto a la sección de redes sociales
+        width: 100%;
+
+        // Contenedor principal: Nombre/Apodo/Correo y Imagen
+        .divNomApoImg {
+            display: flex;
+            align-items: flex-start; // Alinea la imagen y los campos al inicio
+            width: 100%; // Ocupa todo el ancho del contenedor
+            gap: 20px; // Espacio entre `divNomApoCorreo` y `divImgAutora`
+
+            // Nombre, Apodo, Correo
+            .divNomApoCorreo {
+                flex: 1; // Ocupa el espacio necesario para sus elementos
+                display: flex;
+                flex-direction: column;
+                width: 60%;
+                gap: 10px; // Separación entre bloques
+
+                .divNomApod {
+                    display: flex;
+                    flex-direction: column;
+                    gap: 10px;
+
+                    // Nombre y Apodo
+                    .nombreAutora,
+                    .apodoAutora {
+                        width: 100%; // Se ajusta al ancho del contenedor padre
+                        padding: 10px 20px;
+                        border: 1px solid #000000;
+                        border-radius: 5px;
+                        background-color: #f9f9f9;
+                        font-size: 16px;
+                        box-sizing: border-box;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                        &:hover {
+                            transform: scale(1.05);
+                            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                        }
+                    }
+                }
+
+                // Correo
+                .divCorreo {
+                    .correoAutora {
+                        width: calc(100% + 133px); //para poder añadir la anchura que queramos y no se limite al ancho del padre
+                        padding: 10px 20px;
+                        border: 1px solid #000000;
+                        border-radius: 5px;
+                        background-color: #f9f9f9;
+                        font-size: 16px;
+                        box-sizing: border-box;
+                        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+                        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                        &:hover {
+                            transform: scale(1.05);
+                            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                        }
+                    }
+                }
+            }
+
+            // Imagen de la autora
+            .divImgAutora {
+                flex-shrink: 0; // Previene que la imagen se reduzca
+                display: flex;
+                justify-content: center; // Centra la imagen horizontalmente
+                align-items: center; // Centra la imagen verticalmente
+
+                img {
+                    margin-left: -10px;
+                    width: 130px; // Ancho deseado
+                    height: 130px; // Alto deseado
+                    border-radius: 50%; // Imagen redonda
+                    object-fit: cover; // Ajusta la imagen sin deformarla
+                    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                    &:hover {
+                        transform: scale(1.1);
+                        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }
+        }
+
+        // Redes sociales
+        .divRedesSocialesAutora {
+            display: flex;
+            align-items: flex-start; // Alinea la imagen y los campos al inicio
+            width: 100%; // Ocupa todo el ancho del contenedor
+            margin-top: 0;
+
+            .redesSociales {
+                width: 100%;
+                padding: 10px 20px;
+                border: 1px solid #000000;
+                border-radius: 5px;
+                background-color: #f9f9f9;
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+
+
+                .instagram,
+                .linkedin,
+                .github {
+                    margin: 10px 0; // Espaciado entre bloques
+                    display: block; // Cada red social en su propia línea
+                    text-align: left;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+                    a {
+                        display: flex; // Para alinear texto e icono
+                        align-items: center;
+                        gap: 10px; // Espaciado entre texto e imagen
+                        text-decoration: none;
+                        color: #000000;
+                        font-size: 16px;
+                        padding: 10px;
+                        border: 1px solid #ddd;
+                        border-radius: 5px;
+                        background-color: #fff;
+
+                        img {
+                            width: 20px;
+                            height: 20px;
+                            object-fit: contain;
+                        }
+
+                        &:hover {
+                            transform: scale(1.05);
+                            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                            background: linear-gradient(135deg, #e0f7fa, #b2ebf2);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    .seccionUsuario {
+        background-color: #f9f9f9;
+        border-radius: 10px;
+        border: 1px solid #000;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 100%;
+        padding: 20px; // Espaciado dentro de la sección
+        box-sizing: border-box;
+        box-shadow: 5px 5px;
+        //box-shadow: 10px 10px;
+
+        .divTutuloUser h2 {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 15px;
+            font-family: $font-tiulos;
+        }
+
+        .divNomApeUser {
+            display: flex;
+            gap: 15px; // Espacio entre los campos de nombre y apellido
+            justify-content: space-between; // Asegura que los campos se distribuyan de manera uniforme
+            flex-direction: column;
+            margin-bottom: 15px;
+        }
+
+        .divNomApeUser div {
+            flex: 1; // Ambos campos de nombre y apellido ocuparán el mismo ancho
+        }
+
+        .divCorreoUser {
+            margin-bottom: 15px;
+        }
+
+        .divMensajeUser {
+            margin-bottom: 60px;
+        }
+
+        fieldset {
+            border: 1px solid #ccc;
+            padding: 10px 15px;
+            border-radius: 5px;
+            margin: 0;
+            width: 100%; // Asegura que los fieldsets ocupen todo el ancho disponible
+            box-sizing: border-box;
+        }
+
+        legend {
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%; // Hace que los inputs y textarea ocupen todo el ancho disponible
+            padding: 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+            transition: all 0.3s ease; // Transición suave para interactividad
+
+
+            &:focus {
+                outline: none; // para que no haya una linea alrededor
+                border-color: #007BFF; // Cambio de color de borde al hacer focus
+                box-shadow: 0 0 5px rgba(0, 123, 255, 0.5); // Sombra sutil al hacer focus
+            }
+        }
+
+        textarea {
+            min-height: 150px; // Alto mínimo para el textarea
+            resize: vertical; // Permite redimensionar el textarea solo en dirección vertical
+        }
+
+        .botonesEnviarBorrar {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+
+        input[type="button"] {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+
+            &:hover {
+                background-color: #0056b3; // Cambio de color al pasar el cursor
+                transform: scale(1.05); // Efecto de agrandamiento
+            }
+
+            &:active {
+                transform: scale(1); // Efecto de presión
+            }
+        }
+    }
+
+
+}
+
+footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    padding: 20px;
+    background-color: hsl(0, 0%, 85%, 0.5);
+    color: #fff;
+    gap: 20px;
+
+    .footerSuscripcion {
+
+        flex: none;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        &:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+        }
+    }
+
+    .footerSuscripcion {
+        background: linear-gradient(135deg, $neon-azulOscuro, #333);
+        background-size: 300% 300%;
+        animation: gradientAnimation 6s ease infinite;
+        text-align: center;
+        color: white;
+        margin-left: 70px;
+
+        width: 250px;
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+
+            input[type="text"],
+            input[type="email"] {
+                padding: 10px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                outline: none;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+                &:focus {
+                    box-shadow: 0 0 5px rgba(255, 255, 255, 0.8);
+                }
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 16px;
+                border: none;
+                border-radius: 5px;
+                background-color: #f16767;
+                color: white;
+                cursor: pointer;
+                //transition: background-color 0.3s ease, transform 0.2s ease;
+                transition: all 0.3s ease;
+                box-shadow: 4px 6px 2px rgb(33, 33, 33);
+
+                &:hover {
+                    background-color: #f16767;
+                    //box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+                }
+
+                /* Efecto al pulsar el botón */
+                &:active {
+                    //transform: scale(0.95);
+                    transform: translateY(3px);
+                    box-shadow: 0 2px 4px rgb(86, 85, 85);
+                }
+            }
+        }
+    }
+}
+
+/* Keyframe Animation */
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.creativeCommons {
+    text-align: center;
+    padding: 20px;
+    padding-left: 60px;
+    font-size: 16px;
+    color: rgb(0, 0, 0);
+    background-color: hsl(0, 0%, 85%, 0.5);
+    position: relative;
+    margin-left: 0;
+    box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.2);
+
+    /* Añadir espacio entre elementos y borde superior */
+    p {
+        padding-top: 5px;
+        font-size: 14px;
+        color: rgb(0, 0, 0);
+    }
+}
+
+// tablets 768px
+@media all and (min-width: 768px) {
+    header {
+        .divHeader {
+            .divHeaderTitulo {
+                h1 {
+                    font-size: 50px; // Cambia el tamaño de la fuente en tablet
+                    text-align: center; // Alinea el título
+                }
+            }
+        }
+    }
+
+    .divMain {
+
+        gap: 50px;
+
+        .seccionAutora {
+
+            // Contenedor principal: Nombre/Apodo/Correo y Imagen
+            .divNomApoImg {
+                display: flex;
+                align-items: flex-start; // Alinea la imagen y los campos al inicio
+                width: 100%; // Ocupa todo el ancho del contenedor
+                gap: 20px; // Espacio entre `divNomApoCorreo` y `divImgAutora`
+
+                // Nombre, Apodo, Correo
+                .divNomApoCorreo {
+                    flex: 1; // Ocupa el espacio necesario para sus elementos
+                    display: flex;
+                    flex-direction: column;
+                    width: 60%;
+                    gap: 10px; // Separación entre bloques
+
+                    .divNomApod {
+                        display: flex;
+                        flex-direction: row;
+                        gap: 10px;
+
+                        // Nombre y Apodo
+                        .divNombreAutora,
+                        .divApodoAutora {
+                            width: 100%; // Se ajusta al ancho del contenedor padre
+                            flex: 1; // Cada campo ocupará el mismo espacio
+                            min-width: 48%;
+
+                            .nombreAutora,
+                            .apodoAutora {
+                                font-size: 18px;
+                            }
+                        }
+                    }
+
+                    // Correo
+                    .divCorreo {
+                        .correoAutora {
+                            width: 100%;
+                            font-size: 18px;
+                        }
+                    }
+                }
+
+                // Imagen de la autora
+                .divImgAutora {
+                    flex-shrink: 0; // Previene que la imagen se reduzca
+                    display: flex;
+                    justify-content: center; // Centra la imagen horizontalmente
+                    align-items: center; // Centra la imagen verticalmente
+
+                    img {
+                        margin-top: 10px;
+                    }
+                }
+            }
+
+            .divRedesSocialesAutora {
+
+                .redesSociales {
+                    display: flex; // Asegura que los elementos estén en fila
+                    flex-wrap: wrap; // Permite que los elementos se pasen a la siguiente fila si no caben
+                    gap: 20px; // Espacio entre cada red social
+                    justify-content: flex-start; // Alinea los elementos al principio
+
+                    .instagram,
+                    .linkedin,
+                    .github {
+                        min-width: 48%; // Asegura que cada red social no ocupe más del 48% del ancho
+                        margin: 0;
+                        a {
+                            font-size: 18px;
+                        }
+                    }
+                }
+            }
+        }
+
+        .seccionUsuario {
+            .divTutuloUser h2 {
+                font-size: 30px;
+            }
+
+            .divNomApeUser {
+                display: flex; // Hace que los campos estén en una fila
+                gap: 20px; // Espacio entre los campos de nombre y apellido
+                justify-content: space-between; // Espacio igual entre los campos
+                width: 100%; // Asegura que ocupe el 100% del espacio disponible
+                flex-direction: row;
+
+                // Asegura que los divs de Nombre y Apellido ocupen el 50% del ancho
+                .divNombreUser,
+                .divApellidoUser {
+                    flex: 1; // Cada campo ocupará el mismo espacio
+                    min-width: 48%; // Para evitar que se encojan demasiado
+                }
+            }
+        }
+    }
+
+    footer {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; // Esto asegura que los elementos dentro del footer estén centrados verticalmente.
+        justify-content: center;
+
+        .footerSuscripcion {
+            align-self: center; // Centra verticalmente la sección de suscripción
+        }
+    }
+
+    .creativeCommons {
+        p {
+            font-size: 17px;
+        }
+    }
+
+}
+
+@media all and (min-width: 1200px) {
+
+    .fondo {
+        margin: 20px;
+        padding-top: 10px;
+    }
+
+    header {
+
+        //margin-top: 70px;
+
+        .divHeader {
+            .divHeaderTitulo {
+                h1 {
+                    font-size: 70px; // Cambia el tamaño de la fuente en tablet
+                    text-align: center; // Alinea el título
+                }
+            }
+        }
+    }
+
+    .menu-toggle {
+        display: none;
+    }
+
+    #navMenu {
+        display: none;
+    }
+
+    #navMenuHorizontal {
+        //en mobile está oculto y ahora lo muetro
+        display: block;
+
+        position: fixed; // Fijo en la parte superior
+        top: 0; // Posición en la parte superior
+        left: 40%; // Opcional: para que quede alineado a la izquierda de la pantalla
+        width: 100%; // Ancho completo para que abarque toda la parte superior
+        max-width: 310px; // Limita el ancho máximo del menú
+        margin: 0 auto; // Centra el menú
+        height: 50px;
+        background-color: $nav-bg-color;
+        border-radius: $nav-border-radius;
+        font-size: 0;
+        z-index: 1000;
+
+        a {
+            line-height: 50px;
+            height: 100%;
+            font-size: $link-font-size;
+            display: inline-block;
+            width: 100px;
+            position: relative;
+            z-index: 1;
+            text-decoration: none;
+            text-transform: uppercase;
+            text-align: center;
+            color: $texto-blanco;
+            cursor: pointer;
+
+            &:nth-child(2) {
+                width: 110px;
+            }
+        }
+
+        .animation {
+            position: absolute;
+            height: 100%;
+            top: 0;
+            z-index: 0;
+            transition: all $animation-duration $animation-easing;
+            border-radius: $nav-border-radius;
+        }
+
+        // Mixin para crear animaciones específicas
+        @mixin link-animation($width, $left, $color) {
+            width: $width;
+            left: $left;
+            background-color: $color;
+        }
+
+        // Aplicar animación en cada enlace
+        .start-principal,
+        a:nth-child(1):hover~.animation {
+            @include link-animation(100px, 0, $color-principal);
+        }
+
+        .start-articulos,
+        a:nth-child(2):hover~.animation {
+            @include link-animation(110px, 100px, $color-articulos);
+        }
+
+        .start-contacto,
+        a:nth-child(3):hover~.animation {
+            @include link-animation(100px, 210px, $color-contacto);
+        }
+    }
+
+    .divMain {
+        display: flex; // Organiza las secciones en una fila
+        gap: 10px; // Espacio entre las secciones
+        justify-content: space-between; // Distribuye uniformemente
+        width: 98%; // Asegura que .divMain ocupe el ancho completo del contenedor padre
+        flex-direction: row; // Alinea los elementos en una fila
+        box-sizing: border-box; // Incluye bordes y padding en el cálculo de ancho
+
+        .seccionAutora,
+        .seccionUsuario {
+            flex: 0 0 48%; // Ocupa exactamente el 50% del espacio del contenedor padre
+            max-width: 50%; // Restringe el ancho máximo al 50%
+            box-sizing: border-box; // Asegura que padding y bordes no excedan el 50%
+        }
+
+
+    }
+
+    .creativeCommons {
+        p {
+            font-size: 20px;
+        }
+    }
+}
+
+//----------------------------------------------------
+
+/* Estilo para los campos cuando hay un error */
+input[type="text"].error,
+input[type="email"].error,
+textarea.error {
+    border: 1px solid red;
+    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+    /* Sombra roja para resaltar el error */
+}
